@@ -14,6 +14,7 @@ public class WeatherStation {
     CurrentConditionsDisplay currentConditions = new CurrentConditionsDisplay(wd);
 		StatisticsDisplay statisticsDisplay = new StatisticsDisplay(wd);
 		ForecastDisplay forecastDisplay = new ForecastDisplay(wd);
+    HeatIndexDisplay heatIndexDisplay = new HeatIndexDisplay(wd);
     	
     //Add a random value at runtime to display addition capability
     float t, p, h, wS;

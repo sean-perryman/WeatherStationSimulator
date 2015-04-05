@@ -39,7 +39,7 @@ public class NewWeatherGUI {
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.pack();
     frame.setSize(640, 175);
-    frame.setLocation(100, 700);
+    frame.setLocation(100, 900);
     frame.setVisible(true);
   }
 }

@@ -3,9 +3,11 @@ import java.util.Observer;
 
 public class HeatIndexDisplay implements Observer, DisplayElement {
 	float heatIndex = 0.0f;
+  private HeatIndexGUI hiGUI;
 
 	public HeatIndexDisplay(Observable observable) {
 		observable.addObserver(this);
+    hiGUI = new HeatIndexGUI();
 	}
 
 	public void update(Observable observable, Object arg) {
@@ -35,6 +37,6 @@ public class HeatIndexDisplay implements Observer, DisplayElement {
 	}
 
 	public void display() {
-		System.out.println("Heat index is " + heatIndex);
+    hiGUI.label.setText("Heat index is " + heatIndex);
 	}
 }
