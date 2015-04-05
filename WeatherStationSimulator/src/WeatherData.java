@@ -1,5 +1,3 @@
-package weatherstationsimulator;
-	
 import java.util.Observable;
 import java.util.Observer;
 	
@@ -8,6 +6,7 @@ public class WeatherData extends Observable {
 	private float humidity;
 	private float pressure;
   private float windSpeed;
+  private float windChill;
 	
 	public WeatherData() { }
 	
@@ -30,6 +29,15 @@ public class WeatherData extends Observable {
     this.windSpeed = windSpeed;
 		measurementsChanged();
 	}
+  
+  public void setMeasurements(float temperature, float humidity, float pressure, float windSpeed, float windChill) {
+		this.temperature = temperature;
+		this.humidity = humidity;
+		this.pressure = pressure;
+    this.windSpeed = windSpeed;
+    this.windChill = windChill;
+		measurementsChanged();
+	}
 	
 	public float getTemperature() {
 		return temperature;
@@ -45,5 +53,9 @@ public class WeatherData extends Observable {
   
   public float getWindSpeed() {
     return windSpeed;
+  }
+  
+  public float getWindChill() {
+    return windChill;
   }
 }

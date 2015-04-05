@@ -1,4 +1,4 @@
-package weatherstationsimulator;
+
 
 import java.util.Observable;
 import java.util.Observer;
@@ -6,9 +6,11 @@ import java.util.Observer;
 public class ForecastDisplay implements Observer, DisplayElement {
 	private float currentPressure = 29.92f;  
 	private float lastPressure;
+  private ForecastGUI fcGUI;
 
 	public ForecastDisplay(Observable observable) {
 		observable.addObserver(this);
+    fcGUI = new ForecastGUI();
 	}
 
 	public void update(Observable observable, Object arg) {
@@ -21,13 +23,16 @@ public class ForecastDisplay implements Observer, DisplayElement {
 	}
 
 	public void display() {
-		System.out.print("Forecast: ");
+		String forecastString = "Forecast: ";
 		if (currentPressure > lastPressure) {
-			System.out.println("Improving weather on the way!");
+			forecastString += "Improving weather on the way!";
 		} else if (currentPressure == lastPressure) {
-			System.out.println("More of the same");
+			forecastString += "More of the same";
 		} else if (currentPressure < lastPressure) {
-			System.out.println("Watch out for cooler, rainy weather");
+			forecastString += "Watch out for cooler, rainy weather";
 		}
+    
+    //Update GUI window with forecast
+    fcGUI.label.setText(forecastString);
 	}
 }

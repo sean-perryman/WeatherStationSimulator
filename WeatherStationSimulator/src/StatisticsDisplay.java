@@ -1,4 +1,4 @@
-package weatherstationsimulator;
+
 
 import java.util.Observable;
 import java.util.Observer;
@@ -8,9 +8,11 @@ public class StatisticsDisplay implements Observer, DisplayElement {
 	private float minTemp = 200;
 	private float tempSum= 0.0f;
 	private int numReadings;
+  private StatisticsGUI stGUI;
 
 	public StatisticsDisplay(Observable observable) {
 		observable.addObserver(this);
+    stGUI = new StatisticsGUI();
 	}
 
 	public void update(Observable observable, Object arg) {
@@ -33,7 +35,7 @@ public class StatisticsDisplay implements Observer, DisplayElement {
 	}
 
 	public void display() {
-		System.out.println("Avg/Max/Min temperature = " + (tempSum / numReadings)
+		stGUI.label.setText("Avg/Max/Min temperature = " + (tempSum / numReadings)
 			+ "/" + maxTemp + "/" + minTemp);
 	}
 }
