@@ -1,4 +1,5 @@
 
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class WeatherStation {
@@ -14,6 +15,16 @@ public class WeatherStation {
 		StatisticsDisplay statisticsDisplay = new StatisticsDisplay(wd);
 		ForecastDisplay forecastDisplay = new ForecastDisplay(wd);
     	
+    //Add a random value at runtime to display addition capability
+    float t, p, h, wS;
+    Random r = new Random();
+    t = r.nextFloat() + r.nextInt(100);
+    p = r.nextFloat() + r.nextInt(35);
+    h = r.nextFloat() + r.nextInt(50);
+    wS = r.nextFloat() + r.nextInt(25);
+    if (wc.addData(t, p, h, wS)) { WeatherStation.infoBox("New weather data successfully added to database", "Success!"); }
+    else { WeatherStation.infoBox("Failed to add new weather data to database.", "Failure!"); }
+    
     updateGUI(wd, wc);
   }
   
@@ -27,6 +38,6 @@ public class WeatherStation {
   }
   
   public static void infoBox(String infoMessage, String titleBar) {
-    JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
   }
 }

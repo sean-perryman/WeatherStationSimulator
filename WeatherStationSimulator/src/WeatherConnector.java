@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class WeatherConnector {
@@ -9,7 +10,7 @@ public class WeatherConnector {
   private Stack wdList = new Stack();
   
   public WeatherConnector(WeatherData weatherData) {
-    int id = 0, h = 0, wS = 0, wC = 0;
+    int h = 0, wS = 0, wC = 0;
     double t = 0, p = 0;
     
     try {
@@ -45,7 +46,8 @@ public class WeatherConnector {
   public Float[] getData() {
     Float[] data = new Float[5];
     if (!wdList.isEmpty()) {
-      this.wd = (WeatherData)wdList.pop();
+      this.wd = (WeatherData)wdList.firstElement();
+      wdList.remove(0);
       data[0] = this.wd.getTemperature();
       data[1] = this.wd.getPressure();
       data[2] = this.wd.getHumidity();
@@ -56,5 +58,28 @@ public class WeatherConnector {
       data[0] = (float)9999;
       return data;
     }
+  }
+  
+  public Boolean addData(float t, float p, float h, float wS) {
+    ArrayList al = wda.convertToSQL(t, p, h, wS);
+    
+    try {
+      // Registers driver and connects to database
+      Connection con = DriverManager.getConnection("jdbc:mysql://localhost/weatherStation","weather","WeatherPassword!");
+      Statement stmt = con.createStatement();
+
+      // Pulls the entire table and its metadata
+      String query = "INSERT INTO data (temperature, pressure, humidity, windSpeed) " + 
+                     "VALUES (" + al.get(0) + ", " + 
+                     al.get(1) + ", " + al.get(2) + ", " + 
+                     al.get(3) + ")";
+      stmt.execute(query);
+           
+      con.close();
+      return true;
+    } catch(Exception e) {
+      System.out.println( "SQL Execption: " + e);
+    }
+    return false;
   }
 }

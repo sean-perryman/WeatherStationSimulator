@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class WeatherDataAdapter { 
   WeatherData weatherData; 
   
@@ -25,5 +28,16 @@ public class WeatherDataAdapter {
     WeatherData wd = new WeatherData();
     wd.setMeasurements((float)t, (float)h, (float)p, (float)wS, (float)wC);
     return wd;
+  }
+  
+  public ArrayList convertToSQL( float t, float p, float h, float wS ) {
+    ArrayList al = new ArrayList();
+    
+    al.add((double)t);
+    al.add((double)p);
+    al.add((int)h);
+    al.add((int)wS);
+    
+    return al;
   }
 }
