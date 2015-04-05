@@ -28,10 +28,9 @@ public class WeatherConnector {
         p = rs.getDouble("pressure");
         h = rs.getInt("humidity");
         wS = rs.getInt("windSpeed");
-        wC = rs.getInt("windChill");
         this.wd = weatherData;
         this.wda = new WeatherDataAdapter(wd);
-        this.wd = wda.convertFromSQL(t, p, h, wS, wC);
+        this.wd = wda.convertFromSQL(t, p, h, wS);
         
         wdList.add(this.wd);
       }
@@ -78,7 +77,10 @@ public class WeatherConnector {
                      al.get(1) + ", " + al.get(2) + ", " + 
                      al.get(3) + ")";
       stmt.execute(query);
-           
+      
+      this.wd.setMeasurements(t, p, h, wS);
+      wdList.add(this.wd);
+      
       con.close();
       return true;
     } catch(Exception e) {

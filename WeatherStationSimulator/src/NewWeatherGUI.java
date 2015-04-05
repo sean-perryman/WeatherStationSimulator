@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class NewWeatherGUI {
   public JButton update;
+  public JButton addRandom;
   private final WeatherConnector wc;
   
   public NewWeatherGUI(WeatherData wd, WeatherConnector wc) {
@@ -16,23 +17,32 @@ public class NewWeatherGUI {
     
     //Create button
     update = new JButton("Update");
+    addRandom = new JButton("Add Weather Data");
     
     //Place button in the center of the frame
     c.add(new JPanel());
     c.add(new JPanel());
     c.add(new JPanel());
-    c.add(new JPanel());
+
     c.add(update);
     c.add(new JPanel());
+    c.add(addRandom);
+
     c.add(new JPanel());
     c.add(new JPanel());
     c.add(new JPanel());
     
-    //Create the button listener
+    //Create the button listeners
     update.addActionListener((ActionEvent e) -> {
       //Update the data on screens
       //this.wc.getData();
       WeatherStation.updateGUI(wd, wc);
+    });
+    
+    addRandom.addActionListener((ActionEvent e) -> {
+      //Update the data on screens
+      //this.wc.getData();
+      WeatherStation.addRandomData(wd, wc);
     });
     
     //Display the window.

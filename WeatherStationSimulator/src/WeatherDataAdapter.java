@@ -24,9 +24,9 @@ public class WeatherDataAdapter {
     return Math.round(weatherData.getWindSpeed()); 
   }
   
-  public WeatherData convertFromSQL( double t, double p, int h, int wS, int wC ) {
+  public WeatherData convertFromSQL( double t, double p, int h, int wS ) {
     WeatherData wd = new WeatherData();
-    wd.setMeasurements((float)t, (float)h, (float)p, (float)wS, (float)wC);
+    wd.setMeasurements((float)t, (float)h, (float)p, (float)wS);
     return wd;
   }
   
