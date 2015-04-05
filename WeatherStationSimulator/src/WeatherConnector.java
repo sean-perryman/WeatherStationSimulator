@@ -39,6 +39,10 @@ public class WeatherConnector {
       con.close();
     } catch(Exception e) {
       System.out.println( "SQL Execption: " + e);
+      
+      //Alert the user and quit the program if it cannot connect to database
+      WeatherStation.infoBox("Unable to connect to database. Exiting.", "Error!");
+      System.exit(1);
     }
     
   }
