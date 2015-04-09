@@ -1,20 +1,20 @@
 import javax.swing.*;
 
-public class HeatIndexGUI {
+public class WindChillGUI {
   public JLabel label;
   
-  public HeatIndexGUI() {
-    JFrame frame = new JFrame("Heat Index");
+  public WindChillGUI() {
+    JFrame frame = new JFrame("Wind Chill Index");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     //Add the label
-    label = new JLabel("Heat Index", SwingConstants.CENTER);
+    label = new JLabel("Wind Chill", SwingConstants.CENTER);
     frame.getContentPane().add(label);
 
     //Display the window.
     frame.pack();
     frame.setSize(310, 175);
-    frame.setLocation(100, 700);
+    frame.setLocation(430, 700);
     frame.setVisible(true);
   }
 }

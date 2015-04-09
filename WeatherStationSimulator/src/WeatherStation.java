@@ -9,12 +9,14 @@ public class WeatherStation {
 		WeatherConnector wc = new WeatherConnector(wd);
     
     //Instantiate the update window
-    NewWeatherGUI nwGUI = new NewWeatherGUI(wd, wc);
+    UpdateWeatherGUI nwGUI = new UpdateWeatherGUI(wd, wc);
+    AddWeatherGUI awGUI = new AddWeatherGUI(wd, wc);
     
     CurrentConditionsDisplay currentConditions = new CurrentConditionsDisplay(wd);
 		StatisticsDisplay statisticsDisplay = new StatisticsDisplay(wd);
 		ForecastDisplay forecastDisplay = new ForecastDisplay(wd);
     HeatIndexDisplay heatIndexDisplay = new HeatIndexDisplay(wd);
+    WindChillDisplay windChillDisplay = new WindChillDisplay(wd);
     	
     updateGUI(wd, wc);
   }

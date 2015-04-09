@@ -3,9 +3,11 @@ import java.util.Observer;
 
 public class WindChillDisplay implements Observer, DisplayElement {
   float windChill = 0.0f;
+  WindChillGUI wcGUI;
   
   public WindChillDisplay(Observable observable) {
     observable.addObserver(this);
+    wcGUI = new WindChillGUI();
   }
   
   public void update(Observable observable, Object arg) {
@@ -24,6 +26,6 @@ public class WindChillDisplay implements Observer, DisplayElement {
   }
   
   public void display() {
-    System.out.println("The wind chill index is " + windChill);
+    wcGUI.label.setText("The wind chill index is " + windChill);
   }
 }
