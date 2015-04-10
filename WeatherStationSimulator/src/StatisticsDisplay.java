@@ -33,7 +33,7 @@ public class StatisticsDisplay implements Observer, DisplayElement {
 	}
 
 	public void display() {
-		stGUI.label.setText("Avg/Max/Min temperature = " + (tempSum / numReadings)
-			+ "/" + maxTemp + "/" + minTemp);
+		stGUI.label.setText("Avg/Max/Min temperature = " + WeatherStation.rounder((tempSum / numReadings))
+			+ "/" + WeatherStation.rounder(maxTemp) + "/" + WeatherStation.rounder(minTemp));
 	}
 }

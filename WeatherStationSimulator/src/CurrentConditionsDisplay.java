@@ -19,9 +19,9 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 	public void update(Observable obs, Object arg) {
 		if (obs instanceof WeatherData) {
 			WeatherData weatherData = (WeatherData)obs;
-			this.temperature = weatherData.getTemperature();
-			this.humidity = weatherData.getHumidity();
-      this.windSpeed = weatherData.getWindSpeed();
+			this.temperature = WeatherStation.rounder(weatherData.getTemperature());
+			this.humidity = WeatherStation.rounder(weatherData.getHumidity());
+      this.windSpeed = WeatherStation.rounder(weatherData.getWindSpeed());
 			display();
 		}
 	}

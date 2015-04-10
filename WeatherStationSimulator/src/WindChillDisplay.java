@@ -3,6 +3,7 @@ import java.util.Observer;
 
 public class WindChillDisplay implements Observer, DisplayElement {
   float windChill = 0.0f;
+  float t;
   WindChillGUI wcGUI;
   
   public WindChillDisplay(Observable observable) {
@@ -14,7 +15,7 @@ public class WindChillDisplay implements Observer, DisplayElement {
 		if (observable instanceof WeatherData) {
       //Pull data from WeatherData object to variables
       WeatherData weatherData = (WeatherData)observable;
-      float t = weatherData.getTemperature();
+      this.t = weatherData.getTemperature();
       float ws = weatherData.getWindSpeed();
       
       //Calculate wind chill
@@ -26,6 +27,11 @@ public class WindChillDisplay implements Observer, DisplayElement {
   }
   
   public void display() {
-    wcGUI.label.setText("The wind chill index is " + windChill);
+    if (this.t <= 50.0f && this.t > -50.0f) {
+      wcGUI.label.setText("The wind chill index is " + WeatherStation.rounder(windChill));
+    } else {
+      //Set label to reflect no wind chill index if < -50f or > 50f
+      wcGUI.label.setText("No wind chill index.");
+    }
   }
 }

@@ -10,7 +10,7 @@ public class WeatherConnector {
   private Stack wdList = new Stack();
   
   public WeatherConnector(WeatherData weatherData) {
-    int h = 0, wS = 0, wC = 0;
+    int h = 0, wS = 0;
     double t = 0, p = 0;
     
     try {
@@ -55,7 +55,6 @@ public class WeatherConnector {
       data[1] = this.wd.getPressure();
       data[2] = this.wd.getHumidity();
       data[3] = this.wd.getWindSpeed();
-      data[4] = this.wd.getWindChill();
       return data;
     } else {
       data[0] = (float)9999;
@@ -64,6 +63,14 @@ public class WeatherConnector {
   }
   
   public Boolean addData(float t, float p, float h, float wS) {
+    
+    //Round all of these on insert
+    t = WeatherStation.rounder(t);
+    p = WeatherStation.rounder(p);
+    h = WeatherStation.rounder(h);
+    wS = WeatherStation.rounder(wS);
+    
+    //Add to arraylist
     ArrayList al = wda.convertToSQL(t, p, h, wS);
     
     try {

@@ -27,7 +27,7 @@ public class WeatherStation {
       infoBox("Sorry, new new weather data available.", "Error");
       return;
     }
-    wd.setMeasurements(data[0], data[1], data[2], data[3], data[4]);
+    wd.setMeasurements(data[0], data[1], data[2], data[3]);
   }
   
   public static void infoBox(String infoMessage, String titleBar) {
@@ -44,5 +44,14 @@ public class WeatherStation {
     wS = r.nextFloat() + r.nextInt(25);
     if (wc.addData(t, p, h, wS)) { WeatherStation.infoBox("New weather data successfully added to database", "Success!"); }
     else { WeatherStation.infoBox("Failed to add new weather data to database.", "Failure!"); }
+  }
+  
+  // Number rounding helper methods
+  public static double rounder(double a) {
+    return Math.round(a * 100.0) / 100.0;
+  }
+  
+  public static float rounder(float a) {
+    return Math.round(a * 100.0f) / 100.0f;
   }
 }

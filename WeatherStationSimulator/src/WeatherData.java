@@ -6,7 +6,6 @@ public class WeatherData extends Observable {
 	private float humidity;
 	private float pressure;
   private float windSpeed;
-  private float windChill;
 	
 	public WeatherData() { }
 	
@@ -29,33 +28,20 @@ public class WeatherData extends Observable {
     this.windSpeed = windSpeed;
 		measurementsChanged();
 	}
-  
-  public void setMeasurements(float temperature, float humidity, float pressure, float windSpeed, float windChill) {
-		this.temperature = temperature;
-		this.humidity = humidity;
-		this.pressure = pressure;
-    this.windSpeed = windSpeed;
-    this.windChill = windChill;
-		measurementsChanged();
-	}
 	
 	public float getTemperature() {
-		return temperature;
+		return WeatherStation.rounder(temperature);
 	}
 	
 	public float getHumidity() {
-		return humidity;
+		return WeatherStation.rounder(humidity);
 	}
 	
 	public float getPressure() {
-		return pressure;
+		return WeatherStation.rounder(pressure);
 	}
   
   public float getWindSpeed() {
-    return windSpeed;
-  }
-  
-  public float getWindChill() {
-    return windChill;
+    return WeatherStation.rounder(windSpeed);
   }
 }
