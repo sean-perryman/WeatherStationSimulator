@@ -33,7 +33,6 @@ public class UpdateWeatherGUI {
     //Create the button listeners
     update.addActionListener((ActionEvent e) -> {
       //Update the data on screens
-      //this.wc.getData();
       WeatherStation.updateGUI(wd, wc);
     });
     

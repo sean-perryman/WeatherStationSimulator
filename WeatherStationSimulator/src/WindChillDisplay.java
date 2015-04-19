@@ -27,11 +27,6 @@ public class WindChillDisplay implements Observer, DisplayElement {
   }
   
   public void display() {
-    if (this.t <= 50.0f && this.t > -50.0f) {
-      wcGUI.label.setText("The wind chill index is " + WeatherStation.rounder(windChill));
-    } else {
-      //Set label to reflect no wind chill index if < -50f or > 50f
-      wcGUI.label.setText("No wind chill index.");
-    }
+    wcGUI.label.setText("The wind chill index is " + WeatherStation.rounder(windChill));
   }
 }

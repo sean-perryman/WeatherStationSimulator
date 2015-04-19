@@ -3,6 +3,7 @@ import java.util.Observer;
 
 public class HeatIndexDisplay implements Observer, DisplayElement {
 	float heatIndex = 0.0f;
+  float t, rh;
   private HeatIndexGUI hiGUI;
 
 	public HeatIndexDisplay(Observable observable) {
@@ -13,8 +14,8 @@ public class HeatIndexDisplay implements Observer, DisplayElement {
 	public void update(Observable observable, Object arg) {
     if (observable instanceof WeatherData) {
       WeatherData weatherData = (WeatherData)observable;
-      float t = weatherData.getTemperature();
-      float rh = weatherData.getHumidity();
+      this.t = weatherData.getTemperature();
+      this.rh = weatherData.getHumidity();
       heatIndex = (float)
         (
         (16.923 + (0.185212 * t)) + 
